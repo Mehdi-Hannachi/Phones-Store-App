@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useState } from "react";
+import Header from "./components/Header/Header";
+import { Main } from "./components/Main/Main";
+import Footer from "./components/Footer/Footer";
+import { data } from "./data";
 
 function App() {
+  const [phones, setPhones] = useState(data);
+  const [textSearch, setTextSearch] = useState("");
+
+  const addNewPhone = (newPhone) => {
+    setPhones([...phones, newPhone]);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header addNewPhone={addNewPhone} setTextSearch={setTextSearch} />
+      <Main phones={phones} textSearch={textSearch} />
+      <Footer />
     </div>
   );
 }

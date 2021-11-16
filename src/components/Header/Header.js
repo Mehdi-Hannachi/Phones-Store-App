@@ -9,6 +9,7 @@ import {
   Button,
 } from "react-bootstrap";
 import AddPhone from "../AddPhone/AddPhone";
+import { Link } from "react-router-dom";
 
 function Header({ addNewPhone, setTextSearch }) {
   return (
@@ -34,8 +35,8 @@ function Header({ addNewPhone, setTextSearch }) {
 
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
-                <Nav.Link href="#action1">Home</Nav.Link>
-                <Nav.Link href="#action2">Link</Nav.Link>
+                <Link to="/">Home</Link>
+                <Link to="/main">Products</Link>
                 <NavDropdown title="Dropdown" id="offcanvasNavbarDropdown">
                   <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
                   <NavDropdown.Item href="#action4">

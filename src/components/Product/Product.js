@@ -1,5 +1,6 @@
 import React from "react";
 import { Card, ListGroup, ListGroupItem } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import "./product.css";
 
 const Product = ({ product: { marque, modele, ram, camera, photo } }) => {
@@ -18,7 +19,9 @@ const Product = ({ product: { marque, modele, ram, camera, photo } }) => {
         </ListGroup>
         <Card.Body>
           <Card.Link href="#">Add To Cart</Card.Link>
-          <Card.Link href="#">Show Phone Details</Card.Link>
+          <Link to="/phones/phonedetails">
+            <Card.Link>Show Phone Details</Card.Link>
+          </Link>
         </Card.Body>
       </Card>
     </div>

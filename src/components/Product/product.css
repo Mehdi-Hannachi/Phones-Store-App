@@ -1,3 +1,23 @@
-.phone-style {
-  width: 300px;
+.phone-buttons {
+  display: flex;
+  padding: 0;
+}
+
+.phone-li {
+  width: 50%;
+  padding: 10px;
+}
+
+.phone-a {
+  padding: 0px;
+}
+
+div.card-body {
+  padding: 15px 0 0;
+}
+
+.phone-li:hover {
+  background-color: #555;
+  color: white;
+  text-decoration: none;
 }

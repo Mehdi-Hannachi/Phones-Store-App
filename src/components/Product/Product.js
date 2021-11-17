@@ -18,10 +18,16 @@ const Product = ({ product: { id, marque, modele, ram, camera, photo } }) => {
           <ListGroupItem>Camera : {camera}</ListGroupItem>
         </ListGroup>
         <Card.Body>
-          <Card.Link href="#">Add To Cart</Card.Link>
-          <Link to={`/phones/phonedetails/${id}`}>
-            <Card.Link>Show Phone Details</Card.Link>
-          </Link>
+          <ul className="phone-buttons">
+            <li className="phone-li">
+              <Link className="phone-a">Add to Cart</Link>
+            </li>
+            <li className="phone-li">
+              <Link className="phone-a" to={`/phones/phonedetails/${id}`}>
+                Phone Details
+              </Link>
+            </li>
+          </ul>
         </Card.Body>
       </Card>
     </div>

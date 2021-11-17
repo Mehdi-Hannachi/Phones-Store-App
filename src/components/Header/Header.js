@@ -10,6 +10,7 @@ import {
 } from "react-bootstrap";
 import AddPhone from "../AddPhone/AddPhone";
 import { Link } from "react-router-dom";
+import "./header.css";
 
 function Header({ addNewPhone, setTextSearch }) {
   return (
@@ -29,19 +30,36 @@ function Header({ addNewPhone, setTextSearch }) {
             </Offcanvas.Header>
 
             <Offcanvas.Body>
-              <Nav className="justify-content-end flex-grow-1 pe-3">
-                <Link to="/">Home</Link>
-                <Link to="/main">Products</Link>
-                <NavDropdown title="Dropdown" id="offcanvasNavbarDropdown">
-                  <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-                  <NavDropdown.Item href="#action4">
-                    Another action
-                  </NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action5">
-                    Something else here
-                  </NavDropdown.Item>
-                </NavDropdown>
+              <Nav style={{ padding: "0" }}>
+                <ul className="nav-list">
+                  <li>
+                    <Link to="/">Home</Link>
+                  </li>
+                  <li>
+                    <Link to="/main">Products</Link>
+                  </li>
+                  <li>
+                    <NavDropdown
+                      title="Dropdown"
+                      id="offcanvasNavbarDropdown"
+                      className="nav-dropdown"
+                    >
+                      <NavDropdown.Item href="#action3">
+                        Action
+                      </NavDropdown.Item>
+                      <NavDropdown.Item href="#action4">
+                        Another action
+                      </NavDropdown.Item>
+                      <NavDropdown.Divider />
+                      <NavDropdown.Item href="#action5">
+                        Something else here
+                      </NavDropdown.Item>
+                    </NavDropdown>
+                  </li>
+                  <li>
+                    <a href="#about">Contact</a>
+                  </li>
+                </ul>
               </Nav>
               <Form className="d-flex">
                 <FormControl

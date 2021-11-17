@@ -14,22 +14,17 @@ import { Link } from "react-router-dom";
 function Header({ addNewPhone, setTextSearch }) {
   return (
     <div>
-      <Navbar bg="dark" expand={false}>
+      <Navbar bg="dark" variant="dark" expand={false}>
         <Container fluid>
-          <Navbar.Brand href="#" style={{ color: "white" }}>
-            Phones Store
-          </Navbar.Brand>
-          <AddPhone addNewPhone={addNewPhone} />
-
           <Navbar.Toggle aria-controls="offcanvasNavbar" />
           <Navbar.Offcanvas
             id="offcanvasNavbar"
             aria-labelledby="offcanvasNavbarLabel"
-            placement="end"
+            placement="start"
           >
             <Offcanvas.Header closeButton>
               <Offcanvas.Title id="offcanvasNavbarLabel">
-                Offcanvas
+                Phones Store
               </Offcanvas.Title>
             </Offcanvas.Header>
 
@@ -60,6 +55,11 @@ function Header({ addNewPhone, setTextSearch }) {
               </Form>
             </Offcanvas.Body>
           </Navbar.Offcanvas>
+
+          <AddPhone addNewPhone={addNewPhone} />
+          <Navbar.Brand href="#" style={{ color: "white" }}>
+            Phones Store
+          </Navbar.Brand>
         </Container>
       </Navbar>
     </div>

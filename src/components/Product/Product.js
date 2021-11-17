@@ -3,7 +3,7 @@ import { Card, ListGroup, ListGroupItem } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./product.css";
 
-const Product = ({ product: { marque, modele, ram, camera, photo } }) => {
+const Product = ({ product: { id, marque, modele, ram, camera, photo } }) => {
   return (
     <div>
       <Card style={{ width: "18rem" }}>
@@ -19,7 +19,7 @@ const Product = ({ product: { marque, modele, ram, camera, photo } }) => {
         </ListGroup>
         <Card.Body>
           <Card.Link href="#">Add To Cart</Card.Link>
-          <Link to="/phones/phonedetails">
+          <Link to={`/phones/phonedetails/${id}`}>
             <Card.Link>Show Phone Details</Card.Link>
           </Link>
         </Card.Body>

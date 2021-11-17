@@ -30,8 +30,10 @@ function App() {
 
         <Route
           exact
-          to="/phones/phonedetails"
-          render={() => <PhoneDetails />}
+          path="/phones/phonedetails/:myid"
+          render={(defaultProps) => (
+            <PhoneDetails {...defaultProps} phones={phones} />
+          )}
         />
       </Switch>
 

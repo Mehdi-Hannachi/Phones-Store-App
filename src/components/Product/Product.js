@@ -1,9 +1,13 @@
 import React from "react";
 import { Card, ListGroup, ListGroupItem } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
+import PhoneDetails from "../PhoneDetails/PhoneDetails";
 import "./product.css";
 
-const Product = ({ product: { id, marque, modele, ram, camera, photo } }) => {
+const Product = ({
+  product: { id, marque, modele, ram, camera, photo },
+  phones,
+}) => {
   return (
     <div>
       <Card style={{ width: "18rem" }}>
@@ -23,9 +27,16 @@ const Product = ({ product: { id, marque, modele, ram, camera, photo } }) => {
               <Link className="phone-a">Add to Cart</Link>
             </li>
             <li className="phone-li">
-              <Link className="phone-a" to={`/phones/phonedetails/${id}`}>
-                Phone Details
-              </Link>
+              {/* <Link className="phone-a" to={`/phones/phonedetails/${id}`}>
+                <Route
+                  exact
+                  path="/phones/phonedetails/:myid"
+                  render={(defaultProps) => (
+                    <PhoneDetails {...defaultProps} phones={phones} />
+                  )}
+                />
+              </Link> */}
+              <PhoneDetails id={id} phones={phones} />
             </li>
           </ul>
         </Card.Body>

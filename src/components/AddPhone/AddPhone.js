@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-
+import { useDispatch } from "react-redux";
 import Modal from "react-modal";
 import "./addphone.css";
+import { addPhone } from "../JS/actions/phoneActions";
 const customStyles = {
   content: {
     top: "50%",
@@ -14,7 +15,9 @@ const customStyles = {
   },
 };
 
-const AddPhone = ({ addNewPhone }) => {
+// const AddPhone = ({ addNewPhone }) => {
+const AddPhone = () => {
+  const dispatch = useDispatch();
   const [modalIsOpen, setIsOpen] = useState(false);
 
   const [photo, setPhoto] = useState("");
@@ -52,7 +55,9 @@ const AddPhone = ({ addNewPhone }) => {
       return alert("Empty field");
     }
 
-    addNewPhone(phone);
+    // addNewPhone(phone);
+    dispatch(addPhone(phone));
+
     closeModal();
     setMarque("");
     setModele("");

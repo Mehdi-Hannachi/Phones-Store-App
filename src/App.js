@@ -3,22 +3,26 @@ import { useState } from "react";
 import Header from "./components/Header/Header";
 import { Main } from "./components/Main/Main";
 import Footer from "./components/Footer/Footer";
-import { data } from "./data";
+// import { data } from "./data";
 import Home from "./components/Home/Home";
+import { useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
-import PhoneDetails from "./components/PhoneDetails/PhoneDetails";
+// import PhoneDetails from "./components/PhoneDetails/PhoneDetails";
 
 function App() {
-  const [phones, setPhones] = useState(data);
+  // const [phones, setPhones] = useState(data);
+
+  const phones = useSelector((state) => state.phoneReducer.phones);
   const [textSearch, setTextSearch] = useState("");
 
-  const addNewPhone = (newPhone) => {
-    setPhones([...phones, newPhone]);
-  };
+  // const addNewPhone = (newPhone) => {
+  //   setPhones([...phones, newPhone]);
+  // };
 
   return (
     <div className="App">
-      <Header addNewPhone={addNewPhone} setTextSearch={setTextSearch} />
+      <Header  setTextSearch={setTextSearch} />
+      {/* <Header addNewPhone={addNewPhone} setTextSearch={setTextSearch} /> */}
 
       <Switch>
         <Route exact path="/" render={() => <Home />} />
@@ -28,13 +32,13 @@ function App() {
           render={() => <Main phones={phones} textSearch={textSearch} />}
         />
 
-        <Route
+        {/* <Route
           exact
           path="/phones/phonedetails/:myid"
           render={(defaultProps) => (
             <PhoneDetails {...defaultProps} phones={phones} />
           )}
-        />
+        /> */}
       </Switch>
 
       <Footer />

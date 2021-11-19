@@ -10,7 +10,7 @@ const Products = ({ phones, textSearch }) => {
           phone.modele.toUpperCase().includes(textSearch.toUpperCase())
         )
         .map((product) => (
-          <Product product={product} key={product.id} />
+          <Product product={product} key={product.id} phones={phones} />
         ))}
     </div>
   );

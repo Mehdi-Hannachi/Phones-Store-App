@@ -7,6 +7,7 @@ import Footer from "./components/Footer/Footer";
 import Home from "./components/Home/Home";
 import { useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
+import PhoneDetails from "./components/PhoneDetails/PhoneDetails";
 // import PhoneDetails from "./components/PhoneDetails/PhoneDetails";
 
 function App() {
@@ -21,7 +22,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header  setTextSearch={setTextSearch} />
+      <Header setTextSearch={setTextSearch} />
       {/* <Header addNewPhone={addNewPhone} setTextSearch={setTextSearch} /> */}
 
       <Switch>
@@ -32,13 +33,13 @@ function App() {
           render={() => <Main phones={phones} textSearch={textSearch} />}
         />
 
-        {/* <Route
+        <Route
           exact
           path="/phones/phonedetails/:myid"
           render={(defaultProps) => (
             <PhoneDetails {...defaultProps} phones={phones} />
           )}
-        /> */}
+        />
       </Switch>
 
       <Footer />

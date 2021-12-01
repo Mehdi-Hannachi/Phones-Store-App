@@ -1,3 +1,5 @@
+
+
 .phone-buttons {
   display: flex;
   padding: 0;
@@ -18,6 +20,5 @@ div.card-body {
 
 .phone-li:hover {
   background-color: #555;
-  color: white;
   text-decoration: none;
 }

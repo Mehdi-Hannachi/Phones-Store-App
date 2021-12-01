@@ -10,11 +10,11 @@ import {
 } from "react-bootstrap";
 import AddPhone from "../AddPhone/AddPhone";
 import { Link } from "react-router-dom";
-import Phone from "../../logo.png";
+import Phone from "../../phonestore.jpg";
 import "./header.css";
 
 // function Header({ addNewPhone, setTextSearch }) {
-function Header({setTextSearch }) {
+function Header({ setTextSearch }) {
   return (
     <div>
       <Navbar bg="dark" variant="dark" expand={false}>
@@ -27,7 +27,13 @@ function Header({setTextSearch }) {
           >
             <Offcanvas.Header closeButton>
               <Offcanvas.Title id="offcanvasNavbarLabel">
-                Phone Store{" "}
+                <img
+                  src={Phone}
+                  alt="logo"
+                  width="150"
+                  height="60"
+                  style={{ borderRadius: "5px", textAlign: "center" }}
+                />
               </Offcanvas.Title>
             </Offcanvas.Header>
 
@@ -79,7 +85,7 @@ function Header({setTextSearch }) {
           {/* <AddPhone addNewPhone={addNewPhone} /> */}
           <AddPhone />
           <Navbar.Brand href="#" style={{ color: "white" }}>
-            <img src={Phone} alt="logo" width="150" />
+            <img src={Phone} alt="logo" width="150" height="60" />
           </Navbar.Brand>
         </Container>
       </Navbar>

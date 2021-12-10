@@ -5,12 +5,18 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start" : "nodemon server"
+    "serve": "nodemon server",
+    "install-client": "cd client && npm i",
+    "install-server": "npm i ",
+    "dev": "concurrently \" npm run serve  \"    \"  cd client && npm start   \""
   },
   "keywords": [],
   "author": "Hannachi Mehdi",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "concurrently": "^6.4.0"
   }
 }

@@ -1,5 +1,8 @@
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+
+/***************************** User register ******************************** */
 
 exports.userRegiter = async (req, res) => {
   let newUser = new User({ ...req.body });
@@ -20,5 +23,36 @@ exports.userRegiter = async (req, res) => {
     console.log("Register error", error);
 
     res.status(401).json({ msg: "User register failed" });
+  }
+};
+
+/******************************* User login *********************************** */
+
+exports.userLogin = async (req, res) => {
+  try {
+    const user = await User.findOne({ email: req.body.email });
+
+    if (!user) return res.status(404).json({ msg: "Bad credentiels" });
+
+    const isMatch = await bcrypt.compare(req.body.password, user.password);
+
+    if (!isMatch) return res.status(404).json({ msg: "Bad credentiels" });
+
+    const payload = {
+      id: user.id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      adress: user.adress,
+      phoneNumber: user.phoneNumber,
+      email: user.email,
+    };
+
+    const token = await jwt.sign(payload, process.env.secretOrKey);
+
+    res.status(200).json({ token: `Bearer ${token}` });
+  } catch (error) {
+    console.log("Login failed", error);
+
+    res.status(405).json({ msg: "Login failed" });
   }
 };

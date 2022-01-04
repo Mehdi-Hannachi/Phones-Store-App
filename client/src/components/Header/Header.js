@@ -82,7 +82,6 @@ function Header({ setTextSearch }) {
             </Offcanvas.Body>
           </Navbar.Offcanvas>
 
-          {/* <AddPhone addNewPhone={addNewPhone} /> */}
           <AddPhone />
           <Navbar.Brand href="#" style={{ color: "white" }}>
             <img src={Phone} alt="logo" width="150" height="60" />

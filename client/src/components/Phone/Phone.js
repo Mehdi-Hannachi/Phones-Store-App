@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, ListGroup, ListGroupItem } from "react-bootstrap";
-import { Link, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
 import PhoneDetails from "../PhoneDetails/PhoneDetails";
 import "./phone.css";
 
@@ -23,9 +23,8 @@ const Product = ({
         </ListGroup>
         <Card.Body>
           <ul className="phone-buttons">
-            <li className="phone-li">
-              <Link className="phone-a">Add to Cart</Link>
-            </li>
+            <li className="phone-li">Delete</li>
+            <li className="phone-li">Edit</li>
             <li className="phone-li">
               <Link to={`/phones/phonedetails/${id}`} className="phone-a">
                 <PhoneDetails phones={phones} />

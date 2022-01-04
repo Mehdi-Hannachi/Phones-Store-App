@@ -7,13 +7,14 @@ const {
   updatePhone,
 } = require("../controllers/phone.controller");
 const isAuth = require("../middlewares/passport-setup");
+const { addPhoneRules, validator } = require("../middlewares/validator");
 
 const Router = express.Router();
 
 // http://localhost:6000/phone/add-phone
 // Add new Phone
 
-Router.post("/add-phone", isAuth(), addPhone);
+Router.post("/add-phone", addPhoneRules(), validator, addPhone);
 
 // http://localhost:6000/phone/get-phones
 //get all phones

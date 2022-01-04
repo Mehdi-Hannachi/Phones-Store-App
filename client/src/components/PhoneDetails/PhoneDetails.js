@@ -26,7 +26,8 @@
 
 // export default PhoneDetails;
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+// import React, { useState, useEffect } from "react";
 
 import Modal from "react-modal";
 const customStyles = {
@@ -41,7 +42,7 @@ const customStyles = {
 };
 
 const PhoneDetails = ({ id, phones }) => {
-  const [phone, setPhone] = useState({});
+  // const [phone, setPhone] = useState({});
 
   const [modalIsOpen, setIsOpen] = useState(false);
 
@@ -52,13 +53,13 @@ const PhoneDetails = ({ id, phones }) => {
   function closeModal() {
     setIsOpen(false);
   }
-  useEffect(() => {
-    findPhone();
-  }, []);
+  // useEffect(() => {
+  //   findPhone();
+  // }, []);
 
-  const findPhone = () => {
-    setPhone(phones.find((el) => el.id === id));
-  };
+  // const findPhone = () => {
+  //   setPhone(phones.find((el) => el.id === id));
+  // };
 
   return (
     <div>

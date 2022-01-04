@@ -1,11 +1,10 @@
 import Products from "../Products/Products";
 
-export const Main = (props) => {
-  // export const Main = ({phones}) => {
+export const Main = ({ textSearch, match: { url } }) => {
+  console.log(url);
   return (
     <div>
-      {/* <Products phones={phones} /> */}
-      <Products phones={props.phones} textSearch={props.textSearch} />
+      <Products textSearch={textSearch} url={url} />
     </div>
   );
 };

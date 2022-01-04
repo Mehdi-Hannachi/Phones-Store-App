@@ -11,7 +11,7 @@ exports.addPhone = async (req, res) => {
   } catch (error) {
     console.log("add phone failed", error);
 
-    res.status(400).json({ msg: "Add phone failed" });
+    res.status(400).json({ errors: [{ msg: "Add phone failed" }] });
   }
 };
 
@@ -23,7 +23,7 @@ exports.getAllPhones = async (req, res) => {
     res.status(200).json({ msg: "Fetch all phones success", phones });
   } catch (error) {
     console.log("fetch all phones failed", error);
-    res.status(400).json({ msg: "Fetch all phones failed" });
+    res.status(400).json({ errors: [{ msg: "Fetch all phones failed" }] });
   }
 };
 

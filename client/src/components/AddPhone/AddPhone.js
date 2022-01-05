@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import Modal from "react-modal";
 import "./addphone.css";
 import { useHistory } from "react-router-dom";
-import { addPhone } from "../JS/actions/phoneActions";
+import { addPhone } from "../../JS/actions/phoneActions";
 const customStyles = {
   content: {
     top: "50%",
@@ -161,6 +161,7 @@ const AddPhone = () => {
               id="category"
               onChange={(e) => setCategory(e.target.value)}
             >
+              <option selected>Choose category</option>
               <option>new</option>
               <option>reconditioned</option>
             </select>

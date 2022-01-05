@@ -1,81 +1,31 @@
-// import React, { useState, useEffect } from "react";
+import { useState } from "react";
+import { Button, Modal } from "react-bootstrap";
 
-// const PhoneDetails = ({
-//   match: {
-//     params: { myid },
-//   },
-//   phones,
-// }) => {
-//   const [phone, setPhone] = useState({});
+function PhoneDetails() {
+  const [show, setShow] = useState(false);
 
-//   useEffect(() => {
-//     findPhone();
-//   }, []);
-
-//   const findPhone = () => {
-//     setPhone(phones.find((el) => el.id === myid));
-//   };
-
-//   return (
-//     <div>
-//       phone Description
-//       <h1>{phone.marque}</h1>
-//     </div>
-//   );
-// };
-
-// export default PhoneDetails;
-
-import React, { useState } from "react";
-// import React, { useState, useEffect } from "react";
-
-import Modal from "react-modal";
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-  },
-};
-
-const PhoneDetails = ({ id, phones }) => {
-  // const [phone, setPhone] = useState({});
-
-  const [modalIsOpen, setIsOpen] = useState(false);
-
-  function openModal() {
-    setIsOpen(true);
-  }
-
-  function closeModal() {
-    setIsOpen(false);
-  }
-  // useEffect(() => {
-  //   findPhone();
-  // }, []);
-
-  // const findPhone = () => {
-  //   setPhone(phones.find((el) => el.id === id));
-  // };
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   return (
-    <div>
-      <span onClick={openModal}>More details</span>
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        style={customStyles}
-        contentLabel="Example Modal"
-      >
-        <div>
-          <span>Hello</span>
-        </div>
+    <>
+      <Button variant="primary" style={{ width: "100%" }} onClick={handleShow}>
+        Show more details
+      </Button>
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
       </Modal>
-    </div>
+    </>
   );
-};
+}
 
 export default PhoneDetails;

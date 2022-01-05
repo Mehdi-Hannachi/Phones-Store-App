@@ -1,21 +1,10 @@
-
-
-.phone-buttons {
+.admin-btns {
   display: flex;
-  padding: 0;
-}
-
-.phone-li {
-  width: 50%;
-  padding: 10px;
-}
-
-.phone-a {
-  padding: 0px;
+  justify-content: space-between;
 }
 
 div.card-body {
-  padding: 15px 0 0;
+  padding: 0;
 }
 
 .phone-li:hover {

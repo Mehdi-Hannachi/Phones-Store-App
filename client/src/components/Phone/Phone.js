@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, ListGroup, ListGroupItem } from "react-bootstrap";
+import { Button, Card, ListGroup, ListGroupItem } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import PhoneDetails from "../PhoneDetails/PhoneDetails";
 import "./phone.css";
@@ -8,10 +8,18 @@ const Product = ({
   product: { id, marque, modele, ram, camera, photo },
   phones,
 }) => {
+  const role = "admin";
   return (
     <div style={{ width: "18rem", textAlign: "center" }}>
       <Card style={{ width: "18rem", textAlign: "center" }}>
-        <Card.Img variant="top" src={photo} className="phone-style" />
+        <Card.Img
+          variant="top"
+          src={
+            "https://lh3.googleusercontent.com/0vYwY7CRjERuDsgoZWCBWILtK7y_V7U4PZAQR2B3IksDDlatchY8ugyJbYnU6-PB2X-7G_SF--wEtVSIBn_J-m5ECwAkkTXTqNkK0jOOVs_ijsEVydzRbuMXNTZsOi2EYwd2cFc=s512-c"
+          }
+          className="phone-style"
+        />
+        {/* <Card.Img variant="top" src={photo} className="phone-style" /> */}
         <Card.Body>
           <Card.Title>Price : $</Card.Title>
         </Card.Body>
@@ -22,15 +30,15 @@ const Product = ({
           <ListGroupItem>Camera : {camera}</ListGroupItem>
         </ListGroup>
         <Card.Body>
-          <ul className="phone-buttons">
-            <li className="phone-li">Delete</li>
-            <li className="phone-li">Edit</li>
-            <li className="phone-li">
-              <Link to={`/phones/phonedetails/${id}`} className="phone-a">
-                <PhoneDetails phones={phones} />
-              </Link>
-            </li>
-          </ul>
+          {role === "admin" ? (
+            <div className="admin-btns">
+              <Button variant="danger">Delete</Button>
+              <Button variant="secondary">Edit</Button>
+              <PhoneDetails phones={phones} />
+            </div>
+          ) : (
+            <PhoneDetails />
+          )}
         </Card.Body>
       </Card>
     </div>

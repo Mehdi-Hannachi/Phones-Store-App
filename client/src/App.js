@@ -7,6 +7,8 @@ import Home from "./components/Home/Home";
 // import { useSelector, useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import PhoneDetails from "./components/PhoneDetails/PhoneDetails";
+import Login from "./components/Login/Login";
+import Register from "./components/Register/Register";
 // import PhoneDetails from "./components/PhoneDetails/PhoneDetails";
 
 function App() {
@@ -31,6 +33,16 @@ function App() {
           exact
           path="/phones/phonedetails/:myid"
           render={(defaultProps) => <PhoneDetails {...defaultProps} />}
+        />
+        <Route
+          exact
+          path="/login"
+          render={(defaultProps) => <Login {...defaultProps} />}
+        />
+        <Route
+          exact
+          path="/register"
+          render={(defaultProps) => <Register {...defaultProps} />}
         />
       </Switch>
 

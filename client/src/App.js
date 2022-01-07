@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "./components/Header/Header";
 import { Main } from "./components/Main/Main";
 import Footer from "./components/Footer/Footer";
@@ -9,44 +9,61 @@ import { Route, Switch } from "react-router-dom";
 import PhoneDetails from "./components/PhoneDetails/PhoneDetails";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
+import AddPhone from "./components/AddPhone/AddPhone";
+import { getAuthUser } from "./JS/actions/userActions";
+import { useDispatch, useSelector } from "react-redux";
 // import PhoneDetails from "./components/PhoneDetails/PhoneDetails";
 
 function App() {
-  // const loading = useSelector((state) => state.phoneReducer.loading);
+  const isAuth = useSelector((state) => state.userReducer.isAuth);
 
   const [textSearch, setTextSearch] = useState("");
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAuthUser());
+  }, [isAuth]);
 
   return (
     <div className="App">
-      <Header setTextSearch={setTextSearch} />
-      {/* <Header addNewPhone={addNewPhone} setTextSearch={setTextSearch} /> */}
+      <header>
+        <Header setTextSearch={setTextSearch} />
+      </header>
 
-      <Switch>
-        <Route exact path="/" render={() => <Home />} />
-        <Route
-          exact
-          path="/main"
-          render={(rest) => <Main textSearch={textSearch} {...rest} />}
-        />
+      <main>
+        <Switch>
+          <Route exact path="/" render={() => <Home />} />
+          <Route
+            exact
+            path="/main"
+            render={(rest) => <Main textSearch={textSearch} {...rest} />}
+          />
 
-        <Route
-          exact
-          path="/phones/phonedetails/:myid"
-          render={(defaultProps) => <PhoneDetails {...defaultProps} />}
-        />
-        <Route
-          exact
-          path="/login"
-          render={(defaultProps) => <Login {...defaultProps} />}
-        />
-        <Route
-          exact
-          path="/register"
-          render={(defaultProps) => <Register {...defaultProps} />}
-        />
-      </Switch>
+          <Route
+            exact
+            path="/phones/phonedetails/:myid"
+            render={(defaultProps) => <PhoneDetails {...defaultProps} />}
+          />
+          {/* <Route
+            exact
+            path="/(add-phone|edit-phone)/"
+            render={(defaultProps) => <AddPhone {...defaultProps} />}
+          /> */}
+          <Route
+            exact
+            path="/login"
+            render={(defaultProps) => <Login {...defaultProps} />}
+          />
+          <Route
+            exact
+            path="/register"
+            render={(defaultProps) => <Register {...defaultProps} />}
+          />
+        </Switch>
+      </main>
 
-      <Footer />
+      <footer>
+        <Footer />
+      </footer>
     </div>
   );
 }

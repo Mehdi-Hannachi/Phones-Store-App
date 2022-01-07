@@ -13,6 +13,7 @@ const phoneSchema = new mongoose.Schema({
   },
 
   image: String,
+  price: String,
 });
 
 module.exports = mongoose.model("Phone", phoneSchema);

@@ -1,7 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { userLogin } from "../../JS/actions/userActions";
 import "./login.css";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const login = (e) => {
+    e.preventDefault();
+    const userCred = {
+      email,
+      password,
+    };
+
+    dispatch(userLogin(userCred));
+
+    history.push("/main");
+
+    setEmail("");
+    setPassword("");
+  };
+
   return (
     <form className="my-form">
       <h3>Log in</h3>
@@ -12,6 +35,8 @@ const Login = () => {
           type="email"
           className="form-control"
           placeholder="Enter email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
       </div>
 
@@ -21,6 +46,8 @@ const Login = () => {
           type="password"
           className="form-control"
           placeholder="Enter password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
       </div>
 
@@ -37,7 +64,11 @@ const Login = () => {
         </div>
       </div>
 
-      <button type="submit" className="btn btn-dark btn-lg btn-block">
+      <button
+        type="submit"
+        onClick={(e) => login(e)}
+        className="btn btn-dark btn-lg btn-block"
+      >
         Sign in
       </button>
       <p className="forgot-password text-right">

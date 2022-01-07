@@ -32,11 +32,13 @@ exports.userLogin = async (req, res) => {
   try {
     const user = await User.findOne({ email: req.body.email });
 
-    if (!user) return res.status(404).json({ msg: "Bad credentiels" });
+    if (!user)
+      return res.status(404).json({ errors: [{ msg: "Bad credentiels" }] });
 
     const isMatch = await bcrypt.compare(req.body.password, user.password);
 
-    if (!isMatch) return res.status(404).json({ msg: "Bad credentiels" });
+    if (!isMatch)
+      return res.status(404).json({ errors: [{ msg: "Bad credentiels" }] });
 
     const payload = {
       id: user.id,
@@ -53,6 +55,6 @@ exports.userLogin = async (req, res) => {
   } catch (error) {
     console.log("Login failed", error);
 
-    res.status(405).json({ msg: "Login failed" });
+    res.status(405).json({ errors: [{ msg: "Login failed" }] });
   }
 };

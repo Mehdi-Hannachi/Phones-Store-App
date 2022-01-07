@@ -1,15 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, {useState } from "react";
+import { useDispatch} from "react-redux";
 import Modal from "react-modal";
-import { Button } from "react-bootstrap";
-import "./addphone.css";
-import { useHistory } from "react-router-dom";
+// import "./addphone.css";
 import {
-  addPhone,
+  editPhone,
   getAllPhone,
-  getPhone,
-  toggleFalse,
-  toggleTrue,
 } from "../../JS/actions/phoneActions";
 const customStyles = {
   content: {
@@ -22,21 +17,18 @@ const customStyles = {
   },
 };
 
-const AddPhone = () => {
+const EditPhone = ({ phone }) => {
   const dispatch = useDispatch();
-  const history = useHistory();
   const [modalIsOpen, setIsOpen] = useState(false);
-  const isEdit = useSelector((state) => state.phoneReducer.isEdit);
-  const phone = useSelector((state) => state.phoneReducer.phone);
 
-  const [image, setImage] = useState("");
-  const [camera, setCamera] = useState("");
-  const [model, setModel] = useState("");
-  const [ram, setRam] = useState("");
-  const [rom, setRom] = useState("");
-  const [price, setPrice] = useState("");
-  const [resolution, setResolution] = useState("");
-  const [category, setCategory] = useState("");
+  const [image, setImage] = useState(phone.image);
+  const [camera, setCamera] = useState(phone.camera);
+  const [model, setModel] = useState(phone.model);
+  const [ram, setRam] = useState(phone.ram);
+  const [rom, setRom] = useState(phone.rom);
+  const [price, setPrice] = useState(phone.price);
+  const [resolution, setResolution] = useState(phone.resolution);
+  const [category, setCategory] = useState(phone.category);
 
   function openModal() {
     setIsOpen(true);
@@ -45,68 +37,6 @@ const AddPhone = () => {
   function closeModal() {
     setIsOpen(false);
   }
-
-  useEffect(() => {
-    // openModal();
-    if (isEdit) {
-      setResolution(phone.resolution);
-      setModel(phone.model);
-      setImage(phone.image);
-      setRam(phone.ram);
-      setRom(phone.rom);
-      setCamera(phone.camera);
-      setPrice(phone.price);
-      setCategory(phone.category);
-    } else {
-      setResolution("");
-      setModel("");
-      setImage("");
-      setRam("");
-      setRom("");
-      setCamera("");
-      setPrice("");
-      setCategory("");
-    }
-  }, [isEdit, phone]);
-
-  const submitPhone = (e) => {
-    e.preventDefault();
-    const phone = {
-      model,
-      ram,
-      image,
-      camera,
-      price,
-      resolution,
-      rom,
-      category,
-    };
-
-    if (
-      resolution === "" ||
-      model === "" ||
-      ram === "" ||
-      camera === "" ||
-      image === ""
-    ) {
-      return alert("Empty field");
-    }
-
-    dispatch(addPhone(phone));
-    dispatch(getAllPhone());
-
-    // history.push("/main");
-
-    setResolution("");
-    setModel("");
-    setImage("");
-    setRam("");
-    setRom("");
-    setCamera("");
-    setPrice("");
-    setCategory("");
-    closeModal();
-  };
 
   const edit = (e) => {
     e.preventDefault();
@@ -121,13 +51,15 @@ const AddPhone = () => {
       rom,
       category,
     };
-    // dispatch(editUser(phone._id, editedPhone));
+
+    dispatch(editPhone(phone._id, editedPhone));
+
     closeModal();
   };
 
   return (
     <div>
-      <button onClick={() => openModal()}>Add New Phone</button>
+      <button onClick={() => openModal()}>Edit phone</button>
 
       <Modal
         isOpen={modalIsOpen}
@@ -135,7 +67,7 @@ const AddPhone = () => {
         style={customStyles}
         contentLabel="Example Modal"
       >
-        Add New Phone
+        Edit Phone
         <form>
           <div className="form-group">
             <label htmlFor="model">Model</label>
@@ -156,6 +88,7 @@ const AddPhone = () => {
                 type="text"
                 className="form-control"
                 id="ram"
+                value={ram}
                 placeholder="Ram"
                 onChange={(e) => setRam(e.target.value)}
               />
@@ -179,6 +112,7 @@ const AddPhone = () => {
                 type="text"
                 className="form-control"
                 id="camera"
+                value={camera}
                 placeholder="Camera"
                 onChange={(e) => setCamera(e.target.value)}
               />
@@ -225,6 +159,7 @@ const AddPhone = () => {
             <select
               className="form-control"
               id="category"
+              value={category}
               onChange={(e) => setCategory(e.target.value)}
             >
               <option selected>Choose category</option>
@@ -248,9 +183,12 @@ const AddPhone = () => {
           <button
             type="submit"
             className="btn btn-primary"
-            onClick={(e) => submitPhone(e)}
+            onClick={(e) => {
+              edit(e);
+              dispatch(getAllPhone());
+            }}
           >
-            ADD PHONE
+            Edit Phone
           </button>
         </form>
       </Modal>
@@ -258,15 +196,4 @@ const AddPhone = () => {
   );
 };
 
-export default AddPhone;
-{
-  /* <Button
-          variant="secondary"
-          onClick={() => {
-            dispatch(getPhone(phone._id));
-            dispatch(toggleTrue());
-          }}
-        >
-          Edit
-        </Button> */
-}
+export default EditPhone;

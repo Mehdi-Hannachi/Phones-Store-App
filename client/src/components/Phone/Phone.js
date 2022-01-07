@@ -1,14 +1,14 @@
 import React from "react";
 import { Button, Card, ListGroup, ListGroupItem } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import EditPhone from "../EditPhone/EditPhone";
 import PhoneDetails from "../PhoneDetails/PhoneDetails";
+
 import "./phone.css";
 
-const Product = ({
-  product: { id, marque, modele, ram, camera, photo },
-  phones,
-}) => {
+const Product = ({ product, phones }) => {
   const role = "admin";
+  const dispatch = useDispatch();
   return (
     <div style={{ width: "18rem", textAlign: "center" }}>
       <Card style={{ width: "18rem", textAlign: "center" }}>
@@ -21,19 +21,19 @@ const Product = ({
         />
         {/* <Card.Img variant="top" src={photo} className="phone-style" /> */}
         <Card.Body>
-          <Card.Title>Price : $</Card.Title>
+          <Card.Title>Price : {product.price} $</Card.Title>
         </Card.Body>
         <ListGroup className="list-group-flush">
-          <ListGroupItem>Marque : {marque}</ListGroupItem>
-          <ListGroupItem>Modele : {modele}</ListGroupItem>
-          <ListGroupItem>Ram : {ram}</ListGroupItem>
-          <ListGroupItem>Camera : {camera}</ListGroupItem>
+          <ListGroupItem>Model : {product.model}</ListGroupItem>
+          {/* <ListGroupItem>Price : {price}</ListGroupItem> */}
         </ListGroup>
         <Card.Body>
           {role === "admin" ? (
             <div className="admin-btns">
               <Button variant="danger">Delete</Button>
-              <Button variant="secondary">Edit</Button>
+              <Button>
+                <EditPhone phone={product} />
+              </Button>
               <PhoneDetails phones={phones} />
             </div>
           ) : (

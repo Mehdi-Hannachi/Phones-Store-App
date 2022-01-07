@@ -38,12 +38,12 @@ exports.getPhoneById = async (req, res) => {
     if (!phone)
       return res
         .status(404)
-        .json({ msg: "This phone is not availbale anymore" });
+        .json({ errors: [{ msg: "This phone is not availbale anymore" }] });
 
     res.status(201).json({ msg: "Get phone success", phone });
   } catch (error) {
     console.log("get phone failed", error);
-    res.status(400).json({ msg: "Get phone failed" });
+    res.status(400).json({ errors: [{ msg: "Get phone failed" }] });
   }
 };
 

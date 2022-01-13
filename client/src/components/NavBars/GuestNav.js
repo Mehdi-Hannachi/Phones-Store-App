@@ -18,7 +18,7 @@ function GuestNav() {
       <Navbar bg="dark" variant="dark" expand={false}>
         <Container fluid>
           <div className="btns">
-            <Button variant="secondary" size="lg" active>
+            <Button variant="secondary" active>
               <Link
                 to="/login"
                 style={{ textDecoration: "none", color: "white" }}
@@ -27,7 +27,7 @@ function GuestNav() {
               </Link>{" "}
             </Button>
 
-            <Button variant="secondary" size="lg" active>
+            <Button variant="secondary" active>
               <Link
                 to="/register"
                 style={{ textDecoration: "none", color: "white" }}

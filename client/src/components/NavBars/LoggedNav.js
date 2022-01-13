@@ -11,16 +11,15 @@ import {
 import AddPhone from "../AddPhone/AddPhone";
 import { Link } from "react-router-dom";
 import Phone from "../../phonestore.jpg";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./navbars.css";
 import "../AddPhone/addphone.css";
-import { toggleFalse } from "../../JS/actions/phoneActions";
+import { logout } from "../../JS/actions/userActions";
 
-// function Header({ addNewPhone, setTextSearch }) {
 function LoggedNav({ setTextSearch }) {
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.userReducer.user);
 
-  const role = "admin";
   return (
     <div>
       <Navbar bg="dark" variant="dark" expand={false}>
@@ -113,7 +112,18 @@ function LoggedNav({ setTextSearch }) {
             </Offcanvas.Body>
           </Navbar.Offcanvas>
 
-          <AddPhone />
+          {user && user.role === "admin" ? (
+            <div style={{ display: "flex" }}>
+              <AddPhone />
+              <button className="button-add" onClick={() => dispatch(logout())}>
+                LogOut{" "}
+              </button>
+            </div>
+          ) : (
+            <button className="button-add" onClick={() => dispatch(logout())}>
+              LogOut{" "}
+            </button>
+          )}
 
           <Navbar.Brand href="#" style={{ color: "white" }}>
             <img src={Phone} alt="logo" width="150" height="60" />

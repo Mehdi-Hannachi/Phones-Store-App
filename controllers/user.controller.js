@@ -9,20 +9,23 @@ exports.userRegiter = async (req, res) => {
   try {
     const user = await User.findOne({ email: newUser.email });
 
-    if (user) return res.status(404).json({ msg: "User already exist" });
+    if (user)
+      return res.status(404).json({ errors: [{ msg: "User already exist" }] });
 
     const salt = await bcrypt.genSalt(10);
     const hash = await bcrypt.hash(newUser.password, salt);
 
     newUser.password = hash;
 
+    const token = await jwt.sign({ ...newUser }, process.env.secretOrKey);
     await newUser.save();
 
-    res.status(201).json({ msg: "User register success" });
+    res
+      .status(201)
+      .json({ msg: "User register success", token: `Bearer ${token}` });
   } catch (error) {
-    console.log("Register error", error);
-
-    res.status(401).json({ msg: "User register failed" });
+    console.log(error);
+    res.status(401).json({ errors: [{ msg: "User register failed" }] });
   }
 };
 
@@ -53,8 +56,6 @@ exports.userLogin = async (req, res) => {
 
     res.status(200).json({ token: `Bearer ${token}` });
   } catch (error) {
-    console.log("Login failed", error);
-
     res.status(405).json({ errors: [{ msg: "Login failed" }] });
   }
 };

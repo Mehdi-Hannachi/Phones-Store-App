@@ -1,13 +1,14 @@
 import React from "react";
 import { Button, Card, ListGroup, ListGroupItem } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import EditPhone from "../EditPhone/EditPhone";
 import PhoneDetails from "../PhoneDetails/PhoneDetails";
+import { BsFillTrashFill } from "react-icons/bs";
 
 import "./phone.css";
 
 const Product = ({ product, phones }) => {
-  const role = "admin";
+  const user = useSelector((state) => state.userReducer.user);
   const dispatch = useDispatch();
   return (
     <div style={{ width: "18rem", textAlign: "center" }}>
@@ -25,16 +26,16 @@ const Product = ({ product, phones }) => {
         </Card.Body>
         <ListGroup className="list-group-flush">
           <ListGroupItem>Model : {product.model}</ListGroupItem>
-          {/* <ListGroupItem>Price : {price}</ListGroupItem> */}
         </ListGroup>
         <Card.Body>
-          {role === "admin" ? (
+          {user && user.role === "admin" ? (
             <div className="admin-btns">
-              <Button variant="danger">Delete</Button>
-              <Button>
-                <EditPhone phone={product} />
-              </Button>
-              <PhoneDetails phones={phones} />
+              <h2>
+                <BsFillTrashFill />
+              </h2>
+
+              <PhoneDetails phone={product} />
+              <EditPhone phone={product} />
             </div>
           ) : (
             <PhoneDetails />

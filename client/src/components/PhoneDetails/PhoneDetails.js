@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
+import { CgDetailsMore } from "react-icons/cg";
 
 function PhoneDetails() {
   const [show, setShow] = useState(false);
@@ -9,9 +10,9 @@ function PhoneDetails() {
 
   return (
     <>
-      <Button variant="primary" style={{ width: "100%" }} onClick={handleShow}>
-        Show more details
-      </Button>
+      <h3 onClick={handleShow}>
+        <CgDetailsMore />
+      </h3>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>

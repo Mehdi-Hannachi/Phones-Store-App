@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Redirect, useHistory } from "react-router-dom";
 import { userLogin } from "../../JS/actions/userActions";
 import "./login.css";
 
@@ -9,6 +9,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const history = useHistory();
+  const isAuth = useSelector((state) => state.userReducer.isAuth);
 
   const login = (e) => {
     e.preventDefault();
@@ -19,13 +20,13 @@ const Login = () => {
 
     dispatch(userLogin(userCred));
 
-    history.push("/main");
-
     setEmail("");
     setPassword("");
   };
 
-  return (
+  return isAuth ? (
+    <Redirect to="/" />
+  ) : (
     <form className="my-form">
       <h3>Log in</h3>
 

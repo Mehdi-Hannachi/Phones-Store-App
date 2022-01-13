@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "server": "nodemon server.js",
+    "server": "npx nodemon server.js",
     "client": "cd client && npm run start",
     "server-install": "npm install",
     "client-install": "cd client && npm install",
@@ -25,9 +25,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.1.1",
     "passport": "^0.5.2",
-    "passport-jwt": "^4.0.0"
-  },
-  "devDependencies": {
+    "passport-jwt": "^4.0.0",
     "concurrently": "^6.4.0"
-  }
+  },
+  "devDependencies": {}
 }

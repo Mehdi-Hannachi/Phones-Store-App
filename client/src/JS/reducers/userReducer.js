@@ -2,6 +2,7 @@ import {
   GET_AUTH_USER,
   GET_AUTH_USER_FAILED,
   GET_AUTH_USER_SUCCESS,
+  LOG_OUT,
   USER_LOGIN,
   USER_LOGIN_FAILED,
   USER_LOGIN_SUCCESS,
@@ -37,8 +38,7 @@ const userReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         loading: false,
-        isAuth: true,
-        msg: payload,
+        msg: payload.msg,
       };
     case GET_AUTH_USER_SUCCESS:
       return {
@@ -48,13 +48,31 @@ const userReducer = (state = initialState, { type, payload }) => {
         user: payload,
       };
     case USER_LOGIN_FAILED:
+      return {
+        ...state,
+        loading: false,
+        isAuth: false,
+        errors: payload,
+      };
     case USER_REGISTER_FAILED:
+      return {
+        ...state,
+        loading: false,
+        isAuth: false,
+        errors: payload,
+      };
     case GET_AUTH_USER_FAILED:
       return {
         ...state,
         loading: false,
         isAuth: false,
-        ...payload,
+        errors: payload,
+      };
+
+    case LOG_OUT:
+      return {
+        ...state,
+        isAuth: false,
       };
 
     default:

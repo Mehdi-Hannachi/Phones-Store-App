@@ -1,5 +1,48 @@
 .w3-image {
   border-radius: 10px;
 }
+.shine {
+  -webkit-animation: shine 0.75s;
+  animation: shine 0.75s;
+}
+@-webkit-keyframes shine {
+  100% {
+    left: 125%;
+  }
+}
+@keyframes shine {
+  100% {
+    left: 125%;
+  }
+}
 
-
+.imgBox:hover {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  -moz-box-shadow: 0 0 10px #ccc;
+  -webkit-box-shadow: 0 0 10px #ccc;
+  box-shadow: 0 0 10px #ccc;
+}
+.shadow {
+  box-shadow: 10px 10px 5px #000000;
+  -moz-box-shadow: 0px 10px 5px #000000;
+  -webkit-box-shadow: 0px 10px 5px #000000;
+}
+.logo {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 50px;
+  gap: 15px;
+}
+.h {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.imgBox {
+  /* background-image: url("https://www.vigusb.fr/img/cms/vigusb-bg_1920_1080.jpg"); */
+  background-size: contain;
+}

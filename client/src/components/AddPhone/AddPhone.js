@@ -46,28 +46,7 @@ const AddPhone = () => {
     setIsOpen(false);
   }
 
-  useEffect(() => {
-    // openModal();
-    if (isEdit) {
-      setResolution(phone.resolution);
-      setModel(phone.model);
-      setImage(phone.image);
-      setRam(phone.ram);
-      setRom(phone.rom);
-      setCamera(phone.camera);
-      setPrice(phone.price);
-      setCategory(phone.category);
-    } else {
-      setResolution("");
-      setModel("");
-      setImage("");
-      setRam("");
-      setRom("");
-      setCamera("");
-      setPrice("");
-      setCategory("");
-    }
-  }, [isEdit, phone]);
+ 
 
   const submitPhone = (e) => {
     e.preventDefault();
@@ -95,7 +74,6 @@ const AddPhone = () => {
     dispatch(addPhone(phone));
     dispatch(getAllPhone());
 
-    // history.push("/main");
 
     setResolution("");
     setModel("");
@@ -121,13 +99,12 @@ const AddPhone = () => {
       rom,
       category,
     };
-    // dispatch(editUser(phone._id, editedPhone));
     closeModal();
   };
 
   return (
     <div>
-      <button onClick={() => openModal()}>Add New Phone</button>
+      <button className="button-add"onClick={() => openModal()}>Add New Phone</button>
 
       <Modal
         isOpen={modalIsOpen}

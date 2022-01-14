@@ -1,11 +1,9 @@
-import React, {useState } from "react";
-import { useDispatch} from "react-redux";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import Modal from "react-modal";
+import { AiFillEdit } from "react-icons/ai";
 // import "./addphone.css";
-import {
-  editPhone,
-  getAllPhone,
-} from "../../JS/actions/phoneActions";
+import { editPhone, getAllPhone } from "../../JS/actions/phoneActions";
 const customStyles = {
   content: {
     top: "50%",
@@ -59,7 +57,9 @@ const EditPhone = ({ phone }) => {
 
   return (
     <div>
-      <button onClick={() => openModal()}>Edit phone</button>
+      <h3 onClick={() => openModal()}>
+        <AiFillEdit />
+      </h3>
 
       <Modal
         isOpen={modalIsOpen}
